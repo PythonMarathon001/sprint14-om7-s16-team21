@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All books</title>
+</head>
+<body>
+    <h1>Information about all books in library</h1>
+    {% if book_objects %}
+    <ul>
+    {% for book in book_objects %}
+        <li><h3>{{book.name}}</h3>
+            <p>description: {{book.description}}</p>
+            <p>count: {{book.count}}</p>
+            <p>authors: {{book.authors}}</p>
+        </li>
+    {% endfor %}
+    </ul>
+    {% else %}
+        <p>No books are available.</p>
+        {{book_objects}}
+    {% endif %}
+</body>
+</html>
