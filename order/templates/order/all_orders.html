@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Orders</title>
+</head>
+<body>
+    <h1>Information about all orders in library</h1>
+    {% if order_objects %}
+    <ul>
+    {% for order in order_objects %}
+        <li><h3>{{order.name}}</h3>
+            <p>user: {{order.user}}</p><br>
+            <p>book: {{order.book}}</p><br>
+            <p>created at: {{order.created_at}}</p><br>
+            <p>end at: {{order.end_at}}</p><br>
+            <p>plated end at: {{order.plated_end_at}}</p>
+        </li>
+    {% endfor %}
+    </ul>
+    {% else %}
+        <p>No orders are available.</p>
+    {% endif %}
+</body>
+</html>

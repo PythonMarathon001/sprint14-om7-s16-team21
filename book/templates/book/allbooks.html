@@ -5,14 +5,22 @@
     <title>All books</title>
 </head>
 <body>
+
     <h1>Information about all books in library</h1>
+    <a href="{% url 'order:all_orders' %}">Orders</a>
+    <p>Find book by id:
+        {% for book in book_objects %}
+            <a href="{% url 'book:id_book' book.id %}">{{ book.id }}</a>
+        {% endfor %}
+    </p>
     {% if book_objects %}
     <ul>
     {% for book in book_objects %}
         <li><h3>{{book.name}}</h3>
             <p>description: {{book.description}}</p>
             <p>count: {{book.count}}</p>
-            <p>authors: {{book.authors}}</p>
+            <p>authors: {{book.authors.all}}</p>
+
         </li>
     {% endfor %}
     </ul>
