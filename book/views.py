@@ -3,8 +3,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from book.models import Book
 def home(request):
-    return HttpResponse('home')
+    return render(request, 'home.html')
 def show_all(request):
-    #return HttpResponse(print(Book.get_all()))
-    #return HttpResponse(Book.objects.all())
-    return HttpResponse(Book.objects.get)
+    #return HttpResponse(Book.objects.all() правильно
+    showall = Book.objects.all()
+    return render(request, 'showall.html',{'showall': showall})
+
