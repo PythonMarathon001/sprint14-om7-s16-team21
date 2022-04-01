@@ -37,8 +37,8 @@ def filtered_books(request):
     books_by_description = book_objects.filter(description__icontains="adventures")
     books_by_author = book_objects.filter(authors__name__contains="M")
 
-    books_by_given_id = []
-    orders_by_user_id = Order.objects.filter(user_id=222)
+    user_id = 222
+    orders_by_user_id = Order.objects.filter(user_id=user_id)
 
 
 
@@ -51,6 +51,7 @@ def filtered_books(request):
                'books_by_author': books_by_author,
                # 'books_by_given_id': books_by_given_id,
                'orders_by_user_id': orders_by_user_id,
+               'user_id': user_id,
                }
     return render(request, 'book/filtered_books.html', context)
 

@@ -7,8 +7,9 @@
 <body>
     <h1>Information about all books by different filters</h1>
     <a href="{% url 'book:allbooks' %}">All books</a>
-    {% if book_objects %}
-    <p>Books by name starts with "book":
+
+    {% if books_by_name %}
+    <p><h3>Books by name starts with "book":</h3>
         <ul>
         {% for book in books_by_name %}
         <li>
@@ -17,8 +18,10 @@
         {% endfor %}
         </ul>
     </p>
+    {% endif %}
 
-    <p>Books about "adventures":
+    {% if books_by_description %}
+    <p><h3>Books about "adventures":</h3>
         <ul>
         {% for book in books_by_description %}
         <li>
@@ -28,9 +31,10 @@
         {% endfor %}
         </ul>
     </p>
+    {% endif %}
 
     {% if books_by_author %}
-    <p>Books by author name contains "M":
+    <p><h3>Books by author name contains "M":</h3>
         <ul>
         {% for book in books_by_author %}
         <li>
@@ -43,7 +47,7 @@
     {% endif %}
 
     {% if orders_by_user_id %}
-    <p>All books given to specific user (by id=222):
+    <p><h3>All books given to specific user (by id={{user_id}}):</h3>
         <ul>
         {% for order in orders_by_user_id %}
         <li>
@@ -54,9 +58,5 @@
     </p>
     {% endif %}
 
-    {% else %}
-        <p>No books are available.</p>
-        {{book_objects}}
-    {% endif %}
 </body>
 </html>
