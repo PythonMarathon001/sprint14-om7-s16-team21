@@ -17,10 +17,42 @@
         {% endfor %}
         </ul>
     </p>
-    <p>Books by author name starts with "a":
 
+    <p>Books about "adventures":
+        <ul>
+        {% for book in books_by_description %}
+        <li>
+            <p>book name: {{book.name}}</p>
+            <p>book description: {{book.description}}</p>
+        </li>
+        {% endfor %}
+        </ul>
     </p>
 
+    {% if books_by_author %}
+    <p>Books by author name contains "M":
+        <ul>
+        {% for book in books_by_author %}
+        <li>
+            <p>book name: {{book.name}}</p>
+            <p>author name: {{book.name}}</p>
+        </li>
+        {% endfor %}
+        </ul>
+    </p>
+    {% endif %}
+
+    {% if orders_by_user_id %}
+    <p>All books given to specific user (by id=222):
+        <ul>
+        {% for order in orders_by_user_id %}
+        <li>
+            <p>book name: {{order.book.name}}</p>
+        </li>
+        {% endfor %}
+        </ul>
+    </p>
+    {% endif %}
 
     {% else %}
         <p>No books are available.</p>

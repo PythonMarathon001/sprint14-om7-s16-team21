@@ -25,7 +25,10 @@
         <li><h3>{{book.name}}</h3>
             <p>description: {{book.description}}</p>
             <p>count: {{book.count}}</p>
-            <p>authors: {{book.authors.all}}</p>
+            <p>Authors: </p>
+            {% for a in book.authors.all %}
+            <p>{{a.name}} {{a.surname}}</p>
+            {% endfor %}
         </li>
     {% endfor %}
     </ul>
