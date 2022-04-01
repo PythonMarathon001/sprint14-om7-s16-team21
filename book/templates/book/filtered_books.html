@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filtered books</title>
+</head>
+<body>
+    <h1>Information about all books by different filters</h1>
+    <a href="{% url 'book:allbooks' %}">All books</a>
+    {% if book_objects %}
+    <p>Books by name starts with "book":
+        <ul>
+        {% for book in books_by_name %}
+        <li>
+            <p>book name: {{book.name}}</p>
+        </li>
+        {% endfor %}
+        </ul>
+    </p>
+    <p>Books by author name starts with "a":
+
+    </p>
+
+
+    {% else %}
+        <p>No books are available.</p>
+        {{book_objects}}
+    {% endif %}
+</body>
+</html>

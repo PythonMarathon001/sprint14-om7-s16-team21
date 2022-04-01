@@ -4,6 +4,7 @@ from django.template import loader
 from django.views import generic
 
 from book.models import Book
+from order.models import Order
 
 # Create your views here.
 
@@ -12,15 +13,32 @@ def index(request):
 
 def allbooks(request):
     book_objects = Book.objects.all()
-    context = {'book_objects': book_objects}
+    order_objects = Order.objects.all()
+
+    orders_book_id = []
+    unordered_books_id = []
+    for order in order_objects:
+        orders_book_id.append(order.book.id)
+    for book in book_objects:
+        if book.id not in orders_book_id:
+            unordered_books_id.append(book.id)
+
+    context = {'book_objects': book_objects,
+               'unordered_books_id': unordered_books_id,
+               }
     return render(request, 'book/allbooks.html', context)
 
-# def id_book(request, book_id):
-#     try:
-#         book = Book.objects.get(pk=book_id)
-#     except Book.DoesNotExist:
-#         raise Http404("Question does not exist")
-#     return render(request, 'book/', )
+def filtered_books(request):
+    book_objects = Book.objects.all()
+    books_by_name = Book.objects.filter(name__startswith="book")
+
+    for book in book_objects:
+        pass
+
+    context = {'book_objects': book_objects,
+               'books_by_name': books_by_name,
+               }
+    return render(request, 'book/filtered_books.html', context)
 
 class ID_BookView(generic.DetailView):
     model = Book
