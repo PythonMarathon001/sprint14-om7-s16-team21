@@ -29,6 +29,9 @@ def allbooks(request):
                }
     return render(request, 'book/allbooks.html', context)
 
+class ID_BookView(generic.DetailView):
+    model = Book
+    template_name = 'book/id_book.html'
 
 def filtered_books(request):
 
@@ -40,6 +43,8 @@ def filtered_books(request):
     user_id = 222
     orders_by_user_id = Order.objects.filter(user_id=user_id)
 
+    author_id = 2
+    books_by_author_id = book_objects.filter(authors__id=author_id)
 
 
     for book in book_objects:
@@ -52,11 +57,20 @@ def filtered_books(request):
                # 'books_by_given_id': books_by_given_id,
                'orders_by_user_id': orders_by_user_id,
                'user_id': user_id,
+               'books_by_author_id': books_by_author_id,
+               'author_id': author_id,
+
                }
     return render(request, 'book/filtered_books.html', context)
 
-class ID_BookView(generic.DetailView):
-    model = Book
-    template_name = 'book/id_book.html'
+def ordered_books(request):
+    book_objects = Book.objects.all().order_by('-count')
+
+    context = {'book_objects': book_objects,
+               # 'unordered_books_id': unordered_books_id,
+               }
+    return render(request, 'book/ordered_books.html', context)
+
+
 
 

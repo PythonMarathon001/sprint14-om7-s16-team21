@@ -19,7 +19,11 @@
             <a href="{% url 'book:id_book' book_id %}">{{ book_id }}</a>
         {% endfor %}
     </p>
-    <a href="{% url 'book:filtered_books' %}">Filtered books</a>
+
+    <a href="{% url 'book:filtered_books' %}">Filtered books</a><br>
+    <a href="{% url 'book:ordered_books' %}">Ordered books</a>
+
+
     <ul>
     {% for book in book_objects %}
         <li><h3>{{book.name}}</h3>
