@@ -66,6 +66,7 @@ def filtered_books(request):
 
 def ordered_books_count_ascending(request):
     book_objects = Book.objects.all().order_by('count')
+    # book_objects = Book.objects.filter(count__gt=5) #greater than 5
 
     context = {'book_objects': book_objects}
     return render(request, 'book/ordered_books.html', context)
