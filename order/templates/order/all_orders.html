@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>All Orders</title>
-</head>
-<body>
+{% extends "book/index.html" %}
+
+{% block title %}All orders{% endblock %}
+
+{% block content %}
     <h1>Information about all orders in library</h1>
 
     <br>
@@ -28,5 +26,4 @@
     {% else %}
         <p>No orders are available.</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}
