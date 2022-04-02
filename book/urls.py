@@ -19,7 +19,11 @@ urlpatterns = [
     path('allbooks', views.allbooks, name='allbooks'),
     path('allbooks/<int:pk>/', views.ID_BookView.as_view(), name='id_book'),
     path('allbooks/filters/', views.filtered_books, name='filtered_books'),
-    path('allbooks/order_by/', views.ordered_books, name='ordered_books'),
+    path('allbooks/order_by_count_asc/', views.ordered_books_count_ascending, name='ordered_books_count_ascending'),
+    path('allbooks/order_by_count_dsc/', views.ordered_books_count_descending, name='ordered_books_count_descending'),
+    path('allbooks/order_by_name_asc/', views.ordered_books_name_ascending, name='ordered_books_name_ascending'),
+    path('allbooks/order_by_name_dsc/', views.ordered_books_name_descending, name='ordered_books_name_descending'),
+
     # path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
     # path('<int:question_id>/vote/', views.vote, name='vote'),
 ]

@@ -63,12 +63,32 @@ def filtered_books(request):
                }
     return render(request, 'book/filtered_books.html', context)
 
-def ordered_books(request):
+
+def ordered_books_count_ascending(request):
+    book_objects = Book.objects.all().order_by('count')
+
+    context = {'book_objects': book_objects}
+    return render(request, 'book/ordered_books.html', context)
+
+
+def ordered_books_count_descending(request):
     book_objects = Book.objects.all().order_by('-count')
 
-    context = {'book_objects': book_objects,
-               # 'unordered_books_id': unordered_books_id,
-               }
+    context = {'book_objects': book_objects}
+    return render(request, 'book/ordered_books.html', context)
+
+
+def ordered_books_name_ascending(request):
+    book_objects = Book.objects.all().order_by('name')
+
+    context = {'book_objects': book_objects}
+    return render(request, 'book/ordered_books.html', context)
+
+
+def ordered_books_name_descending(request):
+    book_objects = Book.objects.all().order_by('-name')
+
+    context = {'book_objects': book_objects}
     return render(request, 'book/ordered_books.html', context)
 
 

@@ -20,8 +20,11 @@
         {% endfor %}
     </p>
 
-    <a href="{% url 'book:filtered_books' %}">Filtered books</a><br>
-    <a href="{% url 'book:ordered_books' %}">Ordered books</a>
+    <a href="{% url 'book:filtered_books' %}">Filtered books</a><br><br>
+    <a href="{% url 'book:ordered_books_count_ascending' %}">Ordered books by count ascending</a><br>
+    <a href="{% url 'book:ordered_books_count_descending' %}">Ordered books by count descending</a><br>
+    <a href="{% url 'book:ordered_books_name_ascending' %}">Ordered books by name ascending</a><br>
+    <a href="{% url 'book:ordered_books_name_descending' %}">Ordered books by name descending</a><br>
 
 
     <ul>
