@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from django.template import loader
 from django.views import generic
 
-from book.models import Book
+from book.models import Book, BookForm
 from order.models import Order
 from author.models import Author
 
@@ -28,6 +28,28 @@ def allbooks(request):
                'unordered_books_id': unordered_books_id,
                }
     return render(request, 'book/allbooks.html', context)
+
+def add_book(request, id=0):
+    if request.method == "GET":
+        if id == 0:
+            form = BookForm()
+            submit = "Add"
+        else:
+            book = Book.objects.get(pk=id)
+            form = BookForm(instance=book)
+            submit = "Update"
+        context = {'form': form,
+                   'submit': submit}
+        return render(request, 'book/add_book.html', context)
+    else:
+        if id == 0:
+            form = BookForm(request.POST)
+        else:
+            book = Book.objects.get(pk=id)
+            form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+        return redirect('/allbooks')
 
 class ID_BookView(generic.DetailView):
     model = Book
@@ -91,6 +113,7 @@ def ordered_books_name_descending(request):
 
     context = {'book_objects': book_objects}
     return render(request, 'book/ordered_books.html', context)
+
 
 
 
