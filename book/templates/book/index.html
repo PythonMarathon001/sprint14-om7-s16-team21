@@ -10,8 +10,9 @@ table, th, td {
     <title>{% block title %}Index page{% endblock %}</title>
 </head>
 <body>
-    <a href="{% url 'book:allbooks' %}">All books</a>
-    <a href="{% url 'order:all_orders' %}">All orders</a>
+    <a href="{% url 'book:allbooks' %}">Books</a> |
+    <a href="{% url 'order:all_orders' %}">Orders</a> |
+    <a href="{% url 'author:all_authors' %}">Authors</a>
     <hr>
     {% block content %}<h1>Welcome to the index page</h1>{% endblock %}
 </body>

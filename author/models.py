@@ -1,4 +1,5 @@
 from django.db import models, IntegrityError, DataError
+from django.forms import ModelForm
 
 
 class Author(models.Model):
@@ -137,3 +138,9 @@ class Author(models.Model):
         """
         all_users = Author.objects.all()
         return all_users
+
+class AuthorForm(ModelForm):
+    class Meta:
+        model = Author
+        fields = '__all__'
+        # fields = ['name', 'surname', 'patronymic', 'books']

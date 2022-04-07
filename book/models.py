@@ -168,8 +168,8 @@ class Book(models.Model):
 class BookForm(ModelForm):
     class Meta:
         model = Book
-        fields = ['name', 'description', 'count', 'authors']
-        # fields = '__all__'
+        # fields = ['name', 'description', 'count', 'authors']
+        fields = '__all__'
         # widgets = {
         #     'authors' = SelectMultiple()
         # }
