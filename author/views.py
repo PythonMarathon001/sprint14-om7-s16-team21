@@ -30,4 +30,4 @@ def add_author(request, id=0):
             form = AuthorForm(request.POST, instance=author)
         if form.is_valid():
             form.save()
-        return redirect('/all_authors')
+        return redirect('/authors/all_authors')
