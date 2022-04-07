@@ -3,6 +3,7 @@ from django.db import models, DataError, IntegrityError
 from authentication.models import CustomUser
 from author.models import Author
 from book.models import Book
+from django.forms import ModelForm
 import datetime
 
 
@@ -93,3 +94,13 @@ class Order(models.Model):
             # LOGGER.error("User does not exist")
             pass
         return False
+
+class OrderForm(ModelForm):
+    class Meta:
+        model = Order
+        fields = ['user', 'book','end_at','plated_end_at']
+    def __init__(self,*args,**kwargs):
+        super(OrderForm,self).__init__(*args,**kwargs)
+        self.fields['end_at'].required=False
+        self.fields['plated_end_at'].initial=datetime.datetime.now()
+

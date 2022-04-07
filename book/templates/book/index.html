@@ -12,6 +12,7 @@ table, th, td {
 <body>
     <a href="{% url 'book:allbooks' %}">All books</a>
     <a href="{% url 'order:all_orders' %}">All orders</a>
+    <a href="{% url 'user:all_users' %}">All users</a>
     <hr>
     {% block content %}<h1>Welcome to the index page</h1>{% endblock %}
 </body>
