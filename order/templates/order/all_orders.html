@@ -10,11 +10,11 @@
     <!--<br>
     <a href="{% url 'order:filtered_orders' %}">Information about all orders  who does not hand over books on time</a>
     <br>-->
-
+    <a href="{% url 'order:add_order' %}"><p>Add order</p></a>
     {% if order_objects %}
     <ol>
     {% for order in order_objects %}
-        <li><h3>Order(id = {{order.id}})</h3>
+        <li><h3>Order(id = {{order.id}}) <a href="{% url 'order:update_order' order.id %}">update</a></h3>
             <p><b>user:</b> {{order.user}}</p>
             <p><b>book:</b> {{order.book}}</p>
             <p><b>created at:</b> {{order.created_at}}</p>

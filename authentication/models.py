@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.db import models, IntegrityError
 from django.db.utils import DataError
+from django.forms import ModelForm
 
 ROLE_CHOICES = (
     (0, 'visitor'),
@@ -221,3 +222,9 @@ class CustomUser(AbstractBaseUser):
         returns str role name
         """
         return self.get_role_display()
+
+
+class UserForm(ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['first_name', 'middle_name', 'last_name', 'email','password','role','is_active']

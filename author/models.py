@@ -1,5 +1,5 @@
 from django.db import models, IntegrityError, DataError
-
+from django.forms import ModelForm
 
 class Author(models.Model):
     """
@@ -24,7 +24,8 @@ class Author(models.Model):
         Magic method is redefined to show all information about Author.
         :return: author id, author name, author surname, author patronymic
         """
-        return str(self.to_dict())[1:-1]
+        # return str(self.to_dict())[1:-1]
+        return f"{self.name} {self.surname}"
 
     def __repr__(self):
         """
@@ -136,3 +137,7 @@ class Author(models.Model):
         """
         all_users = Author.objects.all()
         return all_users
+class AuthorForm(ModelForm):
+    class Meta:
+        model = Author
+        fields = '__all__'

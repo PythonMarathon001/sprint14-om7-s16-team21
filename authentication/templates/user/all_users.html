@@ -1,0 +1,29 @@
+{% extends "book/index.html" %}
+
+{% block title %}All users{% endblock %}
+
+{% block content %}
+<p><a href="{% url 'user:add_user'%}">add user</a> </p>
+<table style="width:100%">
+          <tr>
+            <th>Id</th>
+            <th>First_name</th>
+            <th>Midle_name</th>
+            <th>Last_name</th>
+            <th>Email</th>
+            <th>Password</th>
+              <th>Edit</th>
+          </tr>
+            {% for user in content %}
+          <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.middle_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email}}</td>
+              <td>{{user.password}}</td>
+              <td><a href="{% url 'user:update_user' user.id%}">Update user</a><br><br></td>
+          </tr>
+            {% endfor %}
+        </table>
+{% endblock %}

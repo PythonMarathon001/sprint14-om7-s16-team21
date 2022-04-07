@@ -1,4 +1,5 @@
 from django.db import models, IntegrityError, DataError
+from django.forms import ModelForm, ModelMultipleChoiceField, SelectMultiple
 
 from author.models import Author
 
@@ -22,6 +23,7 @@ class Book(models.Model):
     description = models.TextField(blank=True)
     count = models.IntegerField(default=10)
     authors = models.ManyToManyField(Author, related_name='books')
+
 
     def __str__(self):
         """
@@ -161,3 +163,13 @@ class Book(models.Model):
         """
         all_users = Book.objects.all()
         return list(all_users)
+
+
+class BookForm(ModelForm):
+    class Meta:
+        model = Book
+        fields = ['name', 'description', 'count', 'authors']
+        # fields = '__all__'
+        # widgets = {
+        #     'authors' = SelectMultiple()
+        # }
